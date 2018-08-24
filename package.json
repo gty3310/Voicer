@@ -9,11 +9,12 @@
     "lib": "lib"
   },
   "engines": {
-    "node": ">=8.1.0"
+    "node": ">=8.1.0",
+    "npm": "5.6.0"
   },
   "scripts": {
     "build": "webpack --watch",
-    "start": "node --inspect app.js",
+    "start": "node app.js",
     "start:debug": "DEBUG=* node app.js"
   },
   "dependencies": {

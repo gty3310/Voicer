@@ -42,27 +42,24 @@ const barChart = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-//   // debugger;
   window.postsData = {};
-//
-  const test = () => {
-    let query = "#foodie";
-    // debugger
-    axios.get(`/search?match_params=trump`)
+  const test = (query) => {
+    axios.get(`/search?match_params=${query}`)
     .then((response) => {
       window.postsData = response;
       barChart();
       console.log(response);
-      // debugger
     })
     .catch(function (error) {
       console.log(error);
     });
   };
-
   window.test = test;
   window.test2 = 5;
+  test("foodie");
 });
+
+  // $(".submit").click(() => test($(".formInput").val()));
 
 // const test = () => {
 //   let query = "#foodie";
@@ -80,23 +77,27 @@ document.addEventListener('DOMContentLoaded', () => {
 //     console.log(error);
 //   });
 // };
+
+//which one would work??? how to make jquery work
 //
-// document.addEventListener('submit', () => {
-//   let searchQuery = "";
-//   searchQuery = document.getElementById("formInput").value;
-//   window.postsData = {};
-//   // debugger;
-// // barChart();
-//   // console.log("here")
-//   // debugger;
-//   test();
-//   // debugger
-//   window.test = test;
-//   window.test2 = 5;
-//
+document.addEventListener('submit', (e) => {
+  // e.preventDefault();
+  // $(".submit").click(() => {
+  let searchQuery = "";
+  searchQuery = document.getElementById("formInput").value;
+  window.postsData = {};
+  // debugger;
+// barChart();
+  // console.log("here")
+  // debugger;
+  test(searchQuery);
+  // debugger
+  window.test = test;
+  window.test2 = 5;
+});
 // });
-
-
+//
+//
 
 
 
