@@ -4,18 +4,33 @@ const path = require('path');
 const fetch = require('node-fetch');
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
 const _twitter = require('twitter');
-const keys = require('./keys');
+
 app.use(express.static('public'));
 
 app.get('/', (request, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-const twitter = new _twitter({
-  consumer_key: keys.consumer_key,
-  consumer_secret: keys.consumer_secret,
-  bearer_token: keys.bearer_token
-});
+let localKeys = null;
+if (process.env.production_mode === "on"){
+  localKeys = {
+    consumer_key: process.env.consumer_key,
+    consumer_secret: process.env.consumer_secret,
+    bearer_token: process.env.bearer_token
+  };
+}
+else {
+  const keys = require('./keys');
+  localKeys ={
+    consumer_key: keys.consumer_key,
+    consumer_secret: keys.consumer_secret,
+    bearer_token: keys.bearer_token
+  };
+}
+
+const twitter = new _twitter(localKeys);
+
+
 // create a search route
 app.get('/search', (request, appResponse) => {
   // let p = new Promise((resolve, reject) => {
@@ -33,16 +48,7 @@ app.get('/search', (request, appResponse) => {
   // });
   // return p;
 });
-// .then((body) => {
-//   let results = JSON.parse(body);
-//   console.log(results);
-//   response.send(results);
-// });
-//
-//
-// twitter.get('search/tweets', {q: '#foodie'}, function(error, tweets, response) {
-//   console.log(tweets);
-// });
+
 
 app.listen(PORT, () => {
   console.log(__dirname);
