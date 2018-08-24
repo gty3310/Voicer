@@ -11,7 +11,6 @@ app.get('/', (request, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-
 const twitter = new _twitter({
   consumer_key: keys.consumer_key,
   consumer_secret: keys.consumer_secret,
@@ -21,7 +20,12 @@ const twitter = new _twitter({
 app.get('/search', (request, appResponse) => {
   // let p = new Promise((resolve, reject) => {
   // debugger
-  twitter.get('search/tweets', {q: `${request.query.match_params}`, count: 100}, function(error, tweets, twitterResponse) {
+  twitter.get('search/tweets', {
+        q: `${request.query.match_params}`,
+        count: 3,
+        // geocode: "37.781157 -122.398720 100mi"
+      },
+      function(error, tweets, twitterResponse) {
     let b = appResponse;
     // debugger
     appResponse.send(tweets);
@@ -34,12 +38,11 @@ app.get('/search', (request, appResponse) => {
 //   console.log(results);
 //   response.send(results);
 // });
-
-
-
-twitter.get('search/tweets', {q: '#foodie'}, function(error, tweets, response) {
-  console.log(tweets);
-});
+//
+//
+// twitter.get('search/tweets', {q: '#foodie'}, function(error, tweets, response) {
+//   console.log(tweets);
+// });
 
 app.listen(PORT, () => {
   console.log(__dirname);
