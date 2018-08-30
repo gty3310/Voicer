@@ -61,4 +61,4 @@ There are many directions in which this project could evolve.
 - [ ] Use another api to analyze people's emotion based on the tweets. 
 
 # Live Website
-https://voicer-app.herokuapp.com/?
+https://voicer-app.herokuapp.com/
