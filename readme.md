@@ -59,3 +59,6 @@ There are many directions in which this project could evolve.
 
 - [ ] Use google api to get a list of most popular news topics
 - [ ] Use another api to analyze people's emotion based on the tweets. 
+
+# Live Website
+https://voicer-app.herokuapp.com/?
