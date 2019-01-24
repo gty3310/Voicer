@@ -1,4 +1,4 @@
-## Voicer - A web app for visualizing news by location. / Google Trends but for Twitter
+## Voicer - A web app for visualizing people's tweets about any topics/ Google Trends but for Twitter
 
 ### Background and Overview
 
